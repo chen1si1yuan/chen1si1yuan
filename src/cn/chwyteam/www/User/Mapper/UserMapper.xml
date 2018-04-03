@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE 
+                     mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                     <mapper namespace="cn.chwyteam.www.User.Dao.UserDao">
+                       <insert id="InsertUser" parameterType="cn.chwyteam.www.User.Pojo.User" useGeneratedKeys="true" keyProperty="uid">  <!-- 参数从左到右依次是 id：方法名（与接口中方法对应） parameterType：        传入值得类型  resultType：返回结果的类型（可以是类 会依次给属性赋值）-->
+                          insert into app_user(uname,pwd,headimg,email) values (#{uname},#{pwd},#{headimg},#{email})
+                       </insert>
+                       <select id="FindUserByUname" parameterType="String" resultType="cn.chwyteam.www.User.Pojo.User">
+                         select uid,uname,pwd,tid,headimg,email from app_user where uname = #{uname}
+                       </select>
+                       <select id="FindUserByUserId" parameterType="int" resultType="cn.chwyteam.www.User.Pojo.User">
+                         select * from app_user where uid = #{uid}
+                       </select>
+                       <select id="FindUserEmail" parameterType="String" resultType="java.lang.Integer">
+                         select count(*) from app_user where email = #{email}
+                       </select>
+                       <update id="ModificationUserInfo" parameterType="cn.chwyteam.www.User.Pojo.User">
+                       update app_user  
+                                  <set>  
+                                   <if test="headimg != ''">  
+                                         headimg=#{headimg} 
+                                   </if>  
+                                  </set>  
+                             where uid=#{uid}
+                       </update>
+                       <update id="StudentIDBinding" >
+                        update app_user set sid=#{sid} where uname=#{uname}
+                       </update>
+                     </mapper>

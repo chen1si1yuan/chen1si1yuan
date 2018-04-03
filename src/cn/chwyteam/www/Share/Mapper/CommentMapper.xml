@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE 
+    mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="cn.chwyteam.www.Share.Dao.CommentDao">
+       <select id="GetCommentId" parameterType="int" resultType="Integer">
+          select communicated_id from communicate_table where share_id =#{share_id}
+       </select>
+       <select id="GetCommentByCommentId" parameterType="int" resultType="cn.chwyteam.www.Share.Pojo.Comment">
+          select * from communicate_table where communicated_id=#{CommentId}
+       </select>
+        <select id="GetCommentByShareId" parameterType="int" resultType="cn.chwyteam.www.Share.Pojo.Comment">
+          select * from communicate_table where share_id=#{share_id}
+       </select>
+       
+    </mapper>
