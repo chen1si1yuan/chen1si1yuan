@@ -1,5 +1,7 @@
 package cn.chwyteam.www.User.Pojo;
 
+import java.util.Arrays;
+
 public class User {
 
 	 Integer uid;
@@ -59,6 +61,11 @@ public class User {
 	}
 	public void setGroup(byte[] group) {
 		this.group = group;
+	}
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", uname=" + uname + ", pwd=" + pwd + ", tid=" + tid + ", headimg=" + headimg
+				+ ", email=" + email + ", group=" + Arrays.toString(group) + ", sid=" + sid + "]";
 	}
 
 	

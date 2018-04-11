@@ -3,8 +3,7 @@ package cn.chwyteam.www.DES;
 import java.util.Arrays;
 import java.util.Random;
 
-import com.sun.org.apache.xml.internal.security.algorithms.JCEMapper.Algorithm;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 
 public class Cryption {
 

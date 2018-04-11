@@ -42,5 +42,10 @@ public class Comment {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	@Override
+	public String toString() {
+		return "Comment [communicated_id=" + communicated_id + ", share_id=" + share_id + ", uid=" + uid + ", txt="
+				+ txt + ", time=" + time + "]";
+	}
 
 }

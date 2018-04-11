@@ -22,11 +22,7 @@
  }
  function test1()
  {
-	 $.get("web/GetUserInfo/1.do",
-			 function(data){
-			 alert(data);
-			 }
-					 );	 
+	 $.get("web/OnPassage");	 
  }
  function test3()
  {

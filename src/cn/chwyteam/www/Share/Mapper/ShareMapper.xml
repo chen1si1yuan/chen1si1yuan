@@ -2,47 +2,66 @@
  <!DOCTYPE 
     mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <mapper namespace="cn.chwyteam.www.Share.Dao.ShareDao">
-    
-       <!-- 查找所有动态Share -->
-       <select id="FindShare"  parameterType="String"  resultType="cn.chwyteam.www.Share.Pojo.Share">
-          select * from share_table  where 1=1 
-          <if test="_parameter != null  and  _parameter != ''">
-            and time &lt; #{time}  
-        </if>
-        ORDER BY time DESC  limit 5
-        
-       </select>  
-       <insert id="InsertShare" parameterType="cn.chwyteam.www.Share.Pojo.Share"  useGeneratedKeys="true" keyProperty="share_id">
-          insert into share_table(user_id,txt,time,like_count,image_url) values(#{user_id},#{txt},#{time},#{like_count},#{image_url})
-       </insert>
-       
+<mapper namespace="cn.chwyteam.www.Share.Dao.ShareDao">
 
-       
-       <select id="FindShare1"  parameterType="cn.chwyteam.www.Share.Pojo.Share"  resultType="cn.chwyteam.www.Share.Pojo.Share">
-          select * from share_table  
-          <where> 
-             <choose>
-             <when test="share_id != null">
-             AND share_id=#{share_id}
-             </when>
-             <when test="user_id != null and time != ''">
-             AND user_id=#{user_id} AND time &lt; #{time} 
-             </when>
-             <when test="user_id != null">
-             AND user_id=#{user_id}
-             </when>
-             <when test="time != null">
-             AND time &lt; #{time} 
-             </when>
-             <otherwise>
-             AND 1= 1
-             </otherwise>
-             </choose>
-         </where>
-             ORDER BY time DESC  limit 5
-       </select>  
-  
-    </mapper>
+	<!-- 查找所有动态Share -->
+	<select id="FindShare" parameterType="String"
+		resultType="cn.chwyteam.www.Share.Pojo.Share">
+		select * from share_table where 1=1
+		<if test="_parameter != null  and  _parameter != ''">
+			and time &lt; #{time}
+		</if>
+		ORDER BY time DESC limit 5
+
+	</select>
+	<insert id="InsertShare" parameterType="cn.chwyteam.www.Share.Pojo.Share"
+		useGeneratedKeys="true" keyProperty="share_id">
+		insert into share_table(user_id,txt,time,like_count,image_url)
+		values(#{user_id},#{txt},#{time},#{like_count},#{image_url})
+	</insert>
+
+
+
+	<select id="FindShare1" parameterType="cn.chwyteam.www.Share.Pojo.Share"
+		resultType="cn.chwyteam.www.Share.Pojo.Share">
+		select * from share_table
+		<where>
+			<choose>
+				<when test="share_id != null">
+					AND share_id=#{share_id}
+				</when>
+				<when test="user_id != null and time != ''">
+					AND user_id=#{user_id} AND time &lt; #{time}
+				</when>
+				<when test="user_id != null">
+					AND user_id=#{user_id}
+				</when>
+				<when test="time != null">
+					AND time &lt; #{time}
+				</when>
+				<otherwise>
+					AND 1= 1
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY time DESC limit 5
+	</select>
+
+<resultMap type="cn.chwyteam.www.Share.Pojo.ShareJL" id="shareJL">
+<id property="share_id" column="share_id"></id>
+<result property="txt" column="txt"></result>
+<result property="time" column="time"></result>
+<result property="user_id" column="user_id"></result>
+<result property="like_count" column="like_count"></result>
+<result property="image_url" column="image_url"></result>
+<association property="user" column="user_id" select="cn.chwyteam.www.User.Dao.UserDao.FindUserByUserId"></association>
+<collection property="comments" column="share_id" select="cn.chwyteam.www.Share.Dao.CommentDao.GetCommentByShareId"></collection>
+</resultMap>
+
+	<select id="findShareJLByshareid" parameterType="int" resultMap="shareJL"> 
+select * from share_table where share_id=#{share_id}
+	</select>
+
+</mapper>
                        
                      

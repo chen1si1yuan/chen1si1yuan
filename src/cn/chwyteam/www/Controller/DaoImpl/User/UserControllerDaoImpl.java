@@ -33,7 +33,8 @@ import cn.chwyteam.www.User.Dao.UserDao;
 import cn.chwyteam.www.User.Pojo.User;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Decoder; 
+import sun.misc.BASE64Encoder;
 
 @Service
 public class UserControllerDaoImpl {

@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
+
+@WebServlet(name="time",loadOnStartup=1)
 public class Timer1 extends HttpServlet{
 	public static HashMap<String, String> map=new HashMap<>();
 	public static HashMap<String, String> cachemap=new HashMap<>();

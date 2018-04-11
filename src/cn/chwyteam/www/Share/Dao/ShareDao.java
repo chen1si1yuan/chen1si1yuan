@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import cn.chwyteam.www.Share.Pojo.Share;
+import cn.chwyteam.www.Share.Pojo.ShareJL;
 
 @Service
 public interface ShareDao {
@@ -29,6 +30,8 @@ public interface ShareDao {
 	 * @return
 	 */
 	public List<Share> FindShare1(Share share);
+	
+	public ShareJL findShareJLByshareid(int share_id);
 
 
 }
